@@ -1,0 +1,38 @@
+﻿<?xml version="1.0"?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Life"
+                   namespace="Life.Models" >
+
+  <class name="BuildingLevel" lazy="false">
+    <id name="Id">
+      <generator class="native" />
+    </id>
+
+    <property name= "Level" not-null="true"/>
+    <property name= "BuildDuration" not-null="true"/>
+
+    <many-to-one name="Building" column="BuildingId" class="Building"/>
+
+    <bag name="BuildingCosts"
+       lazy="true"
+       inverse="true"
+       batch-size="25"
+       cascade="all-delete-orphan">
+
+      <key column="BuildingLevelId"/>
+      <one-to-many class="BuildingCost"/>
+    </bag>
+
+    <bag name="BuildingFactorModifiers"
+       lazy="true"
+       inverse="true"
+       batch-size="25"
+       cascade="all-delete-orphan">
+
+      <key column="BuildingLevelId"/>
+      <one-to-many class="BuildingFactorModifier"/>
+    </bag>
+    
+    
+  </class>
+</hibernate-mapping>

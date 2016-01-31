@@ -1,0 +1,24 @@
+﻿<?xml version="1.0"?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Life"
+                   namespace="Life.Models" >
+
+  <class name="Research" lazy="false">
+    <id name="Id">
+      <generator class="native" />
+    </id>
+
+    <property name= "Name" not-null="true"/>
+    <property name= "Description" not-null="true"/>
+
+    <bag name="ResearchLevels"
+       lazy="true"
+       inverse="true"
+       batch-size="25"
+       cascade="all-delete-orphan">
+
+      <key column="ResearchId"/>
+      <one-to-many class="ResearchLevel"/>
+    </bag>
+  </class>
+</hibernate-mapping>

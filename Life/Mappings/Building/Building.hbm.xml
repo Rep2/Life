@@ -1,0 +1,24 @@
+﻿<?xml version="1.0"?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Life"
+                   namespace="Life.Models" >
+
+  <class name="Building" lazy="false">
+    <id name="Id">
+      <generator class="native" />
+    </id>
+
+    <property name= "Name" not-null="true"/>
+    <property name= "Description" not-null="true"/>
+
+    <bag name="BuildingLevels"
+       lazy="true"
+       inverse="true"
+       batch-size="25"
+       cascade="all-delete-orphan">
+
+      <key column="BuildingId"/>
+      <one-to-many class="BuildingLevel"/>
+    </bag>
+  </class>
+</hibernate-mapping>

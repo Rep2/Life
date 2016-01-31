@@ -1,0 +1,47 @@
+﻿<?xml version="1.0"?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Life"
+                   namespace="Life.Models" >
+
+  <class name="User" lazy="false">
+    <id name="Id">
+      <generator class="native" />
+    </id>
+    
+    <property name="Email" not-null="true"/>
+    <property name="PasswordHash" not-null="true"/>
+    <property name="PasswordSalt" not-null="true"/>
+    <property name="ResourcesUpdatedAt" not-null="true"/>
+
+
+    <bag name="UserResources"
+       lazy="true"
+       inverse="true"
+       batch-size="25"
+       cascade="all-delete-orphan">
+      
+      <key column="UserId"/>
+      <one-to-many class="UserResource"/>
+    </bag>
+
+    <bag name="UserFactors"
+       lazy="true"
+       inverse="true"
+       batch-size="25"
+       cascade="all-delete-orphan">
+
+      <key column="UserId"/>
+      <one-to-many class="UserFactor"/>
+    </bag>
+
+    <bag name="Planets"
+       lazy="true"
+       inverse="true"
+       batch-size="25"
+       cascade="all-delete-orphan">
+
+      <key column="UserId"/>
+      <one-to-many class="Planet"/>
+    </bag>
+  </class>
+</hibernate-mapping>

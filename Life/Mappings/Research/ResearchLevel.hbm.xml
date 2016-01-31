@@ -1,0 +1,39 @@
+﻿<?xml version="1.0"?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Life"
+                   namespace="Life.Models" >
+
+  <class name="ResearchLevel" lazy="false">
+    <id name="Id">
+      <generator class="native" />
+    </id>
+
+    <property name= "Level" not-null="true"/>
+    <property name= "Duration" not-null="true"/>
+    <property name= "ResearchLabLevel" not-null="true"/>
+
+    <many-to-one not-null="true" name="Research" column="ResearchId" class="Research"/>
+
+    <bag name="ResearchCosts"
+       lazy="true"
+       inverse="true"
+       batch-size="25"
+       cascade="all-delete-orphan">
+
+      <key column="ResearchLevelId"/>
+      <one-to-many class="ResearchCost"/>
+    </bag>
+
+    <many-to-one name="ResearchRequirment" column="ResearchRequirmentId" class="ResearchLevel"/>
+
+    <bag name="ResearchFactorModifiers"
+       lazy="true"
+       inverse="true"
+       batch-size="25"
+       cascade="all-delete-orphan">
+
+      <key column="ResearchLevelId"/>
+      <one-to-many class="ResearchFactorModifier"/>
+    </bag>
+  </class>
+</hibernate-mapping>

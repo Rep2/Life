@@ -1,0 +1,12 @@
+﻿<?xml version="1.0"?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="NHibernateSQLite"
+                   namespace="NHibernateSQLite" >
+
+  <class name="NHibernateSQLite.User, NHibernateSQLite" lazy="false">
+    <id name="id" access="field">
+      <generator class="native" />
+    </id>
+    <property name="name" access="field" column="name"/>
+  </class>
+</hibernate-mapping>

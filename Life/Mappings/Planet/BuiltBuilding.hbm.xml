@@ -1,0 +1,14 @@
+﻿<?xml version="1.0"?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Life"
+                   namespace="Life.Models" >
+
+  <class name="BuiltBuilding" lazy="false">
+    <id name="Id">
+      <generator class="native" />
+    </id>
+
+    <many-to-one not-null="true" name="BuildingLevel" column="BuildingLevelID" class="BuildingLevel"/>
+    <many-to-one not-null="true" name="Planet" column="PlanetID" class="Planet"/>
+  </class>
+</hibernate-mapping>

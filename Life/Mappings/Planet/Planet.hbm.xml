@@ -1,0 +1,38 @@
+﻿<?xml version="1.0"?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Life"
+                   namespace="Life.Models" >
+
+  <class name="Planet" lazy="false">
+    <id name="Id">
+      <generator class="native" />
+    </id>
+
+    <property name="Size" not-null="true"/>
+    <property name="Temperature" not-null="true"/>
+    
+    <component name="Location" class="Location">
+      <property name="X" not-null="true"/>
+      <property name="Z" not-null="true"/>
+      <property name="Y" not-null="true"/>
+    </component>
+
+    <component name="CurrentlyBuilding" class="CurrentlyBuilding">
+      <property name="Start"/>
+      <many-to-one name="BuildingLevel" column="BuildingLevelId" class="BuildingLevel"/>
+    </component>
+
+    <many-to-one name="User" column="UserID" class="User"/>
+
+    <bag name="BuiltBuildings"
+       lazy="true"
+       inverse="true"
+       batch-size="25"
+       cascade="all-delete-orphan">
+
+      <key column="PlanetId"/>
+      <one-to-many class="BuiltBuilding"/>
+    </bag>
+    
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,26 @@
+﻿<?xml version="1.0"?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Life"
+                   namespace="Life.Models" >
+
+  <class name="FactorModifier" lazy="false"  abstract="true">
+    <id name="Id">
+      <generator class="native" />
+    </id>
+
+    <discriminator column="Type" type="String" not-null="true"/>
+
+    <property name= "Value" not-null="true"/>
+
+    <many-to-one not-null="true" name="Factor" column="FactorId" class="Factor"/>
+
+    <subclass name="BuildingFactorModifier" discriminator-value="Building">
+      <many-to-one name="BuildingLevel" column="BuildingLevelId" class="BuildingLevel"/>
+    </subclass>
+
+    <subclass name="ResearchFactorModifier" discriminator-value="Research">
+      <many-to-one name="ResearchLevel" column="ResearchLevelId" class="ResearchLevel"/>
+    </subclass>
+
+  </class>
+</hibernate-mapping>

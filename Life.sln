@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Life", "Life\Life.csproj", "{F42D7506-994D-4DDD-9E4A-499E4B2F7CF1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4E8BA26C-53A6-40FC-9A8F-5B647EB92522}"
+	ProjectSection(SolutionItems) = preProject
+		User.hbm.xml = User.hbm.xml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{528001EB-070E-4DBC-B5C9-21D7897F8302}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F42D7506-994D-4DDD-9E4A-499E4B2F7CF1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F42D7506-994D-4DDD-9E4A-499E4B2F7CF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F42D7506-994D-4DDD-9E4A-499E4B2F7CF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F42D7506-994D-4DDD-9E4A-499E4B2F7CF1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
