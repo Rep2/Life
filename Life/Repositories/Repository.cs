@@ -63,6 +63,22 @@ namespace Life.Repositories
             }
         }
 
+        public void Create(List<T> models)
+        {
+            using (ISession session = factory.OpenSession())
+            {
+                using (session.BeginTransaction())
+                {
+                    foreach (T model in models)
+                    {
+                        session.Save(model);
+                    }
+
+                    session.Transaction.Commit();
+                }
+            }
+        }
+
         public void Delete(T model)
         {
             using (ISession session = factory.OpenSession())

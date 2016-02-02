@@ -34,6 +34,16 @@
       <one-to-many class="UserFactor"/>
     </bag>
 
+    <bag name="ResearchedResearchs"
+       lazy="true"
+       inverse="true"
+       batch-size="25"
+       cascade="all-delete-orphan">
+
+      <key column="UserId"/>
+      <one-to-many class="ResearchedResearch"/>
+    </bag>
+
     <bag name="Planets"
        lazy="true"
        inverse="true"

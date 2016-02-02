@@ -15,260 +15,272 @@ namespace Life.Factory
         {
 
             var researchRepositorie = new Repository<Research>();
-            var resourceRepositorie = new Repository<Resource>();
-            var factorRepository = new Repository<Factor>();
+           
 
             if (researchRepositorie.Get().Count == 0)
             {
+                var energy = CreateEnergyResearch();
 
-                // Resources
-                var metalCriteria = new Dictionary<string, string>();
-                metalCriteria.Add("Name", "Metal");
-                var metal = resourceRepositorie.Get(metalCriteria).First();
-
-                var carbonCriteria = new Dictionary<string, string>();
-                carbonCriteria.Add("Name", "Carbon");
-                var carbon = resourceRepositorie.Get(carbonCriteria).First();
-
-                var fuleCriteria = new Dictionary<string, string>();
-                fuleCriteria.Add("Name", "Fule");
-                var fule = resourceRepositorie.Get(fuleCriteria).First();
-
-                // Factors
-                var researchFactorCriteria = new Dictionary<string, string>();
-                researchFactorCriteria.Add("Name", "Research speed");
-                var researchFactor = factorRepository.Get(researchFactorCriteria).First();
-
-                var shipBuildFactorCriteria = new Dictionary<string, string>();
-                shipBuildFactorCriteria.Add("Name", "Ship build speed");
-                var shipBuildFactor = factorRepository.Get(shipBuildFactorCriteria).First();
-
-                var buildFactorCriteria = new Dictionary<string, string>();
-                buildFactorCriteria.Add("Name", "Build speed");
-                var buildFactor = factorRepository.Get(buildFactorCriteria).First();
-
-
-                var energy = new Research()
+                researchRepositorie.Create(
+                    new List<Research>()
                     {
-                        Name = "Energy converting",
-                        Description = "Allows basic types of energy converting"
-                    };
+                        energy,
+                        CreateCombustionEngineResearch(),
+                        CreateLaserResearch(energy)
+                    }
+                );
+            }
 
-                energy.ResearchLevels = new List<ResearchLevel>()
+        }
+
+        public static Research CreateEnergyResearch()
+        {
+            var energy = new Research()
+            {
+                Name = "Energy converting",
+                Description = "Allows basic types of energy converting"
+            };
+
+            energy.AddResearchLevels(
+                new List<ResearchLevel>()
                 {
                     new ResearchLevel(){
-                        Research = energy,
                         Level = 1,
                         Duration = 200,
                         ResearchLabLevel = 1
                     },
                     new ResearchLevel(){
-                        Research = energy,
                         Level = 2,
                         Duration = 600,
                         ResearchLabLevel = 2
                     },
                     new ResearchLevel(){
-                        Research = energy,
                         Level = 3,
                         Duration = 1500,
                         ResearchLabLevel = 2
                     },
                     new ResearchLevel(){
-                        Research = energy,
                         Level = 4,
                         Duration = 3400,
                         ResearchLabLevel = 4
                     }
-                };
+                }
+            );
 
-                energy.ResearchLevels.ElementAt(0).ResearchCosts = new List<ResearchCost>()
+            var resorceRepository = new Repository<Resource>();
+            var metal = resorceRepository.Get(new Dictionary<string, string>() { { "Name", "Metal" } }).First();
+            var carbon = resorceRepository.Get(new Dictionary<string, string>() { { "Name", "Carbon" } }).First();
+            var fule = resorceRepository.Get(new Dictionary<string, string>() { { "Name", "Fule" } }).First();
+
+
+            var factorRepository = new Repository<Factor>();
+            var buildFactor = factorRepository.Get(new Dictionary<string, string>() { { "Name", "Build speed" } }).First();
+
+            energy.ResearchLevels.ElementAt(0).AddResearchLevelsCosts(
+                new List<ResearchCost>()
                 {
                     new ResearchCost(){
                         Resource = carbon,
-                        Value = 200,
-                        ResearchLevel = energy.ResearchLevels.ElementAt(0)
+                        Value = 200
                     },
                     new ResearchCost(){
                         Resource = fule,
-                        Value = 200,
-                        ResearchLevel = energy.ResearchLevels.ElementAt(0)
+                        Value = 200
                     },
                     new ResearchCost(){
                         Resource = metal,
-                        Value = 200,
-                        ResearchLevel = energy.ResearchLevels.ElementAt(0)
+                        Value = 200
                     }
-                };
+                }
+            );
 
-                energy.ResearchLevels.ElementAt(0).ResearchFactorModifiers = new List<ResearchFactorModifier>()
+            energy.ResearchLevels.ElementAt(0).AddResearchLevelModifiers(
+                new List<ResearchFactorModifier>()
                 {
                     new ResearchFactorModifier(){
                         Factor = buildFactor,
-                        ResearchLevel = energy.ResearchLevels.ElementAt(0),
                         Value = 10
                     }
-                };
+                }
+            );
 
-                energy.ResearchLevels.ElementAt(1).ResearchFactorModifiers = new List<ResearchFactorModifier>()
+            energy.ResearchLevels.ElementAt(1).AddResearchLevelsCosts(
+                new List<ResearchCost>()
+                {
+                    new ResearchCost(){
+                        Resource = carbon,
+                        Value = 800
+                    },
+                    new ResearchCost(){
+                        Resource = fule,
+                        Value = 800
+                    },
+                    new ResearchCost(){
+                        Resource = metal,
+                        Value = 800
+                    }
+                }
+            );
+
+            energy.ResearchLevels.ElementAt(1).AddResearchLevelModifiers(
+            new List<ResearchFactorModifier>()
                 {
                     new ResearchFactorModifier(){
                         Factor = buildFactor,
-                        ResearchLevel = energy.ResearchLevels.ElementAt(1),
                         Value = 40
                     }
-                };
+                }
+            );
 
-                energy.ResearchLevels.ElementAt(2).ResearchFactorModifiers = new List<ResearchFactorModifier>()
+            energy.ResearchLevels.ElementAt(2).AddResearchLevelsCosts(
+                new List<ResearchCost>()
+                {
+                    new ResearchCost(){
+                        Resource = carbon,
+                        Value = 2400
+                    },
+                    new ResearchCost(){
+                        Resource = fule,
+                        Value = 2400
+                    },
+                    new ResearchCost(){
+                        Resource = metal,
+                        Value = 2400
+                    }
+                }
+            );
+
+            
+            energy.ResearchLevels.ElementAt(2).AddResearchLevelModifiers(
+                new List<ResearchFactorModifier>()
                 {
                     new ResearchFactorModifier(){
                         Factor = buildFactor,
-                        ResearchLevel = energy.ResearchLevels.ElementAt(2),
                         Value = 80
                     }
-                };
+                }
+            );
 
-                energy.ResearchLevels.ElementAt(3).ResearchFactorModifiers = new List<ResearchFactorModifier>()
+            energy.ResearchLevels.ElementAt(3).AddResearchLevelsCosts(
+                new List<ResearchCost>()
+                {
+                    new ResearchCost(){
+                        Resource = carbon,
+                        Value = 4200
+                    },
+                    new ResearchCost(){
+                        Resource = fule,
+                        Value = 4200
+                    },
+                    new ResearchCost(){
+                        Resource = metal,
+                        Value = 4200
+                    }
+                }
+            );
+
+             energy.ResearchLevels.ElementAt(3).AddResearchLevelModifiers(
+                new List<ResearchFactorModifier>()
                 {
                     new ResearchFactorModifier(){
                         Factor = buildFactor,
-                        ResearchLevel = energy.ResearchLevels.ElementAt(3),
                         Value = 110
                     }
-                };
+                }
+            );
 
-                energy.ResearchLevels.ElementAt(1).ResearchCosts = new List<ResearchCost>()
-                {
-                    new ResearchCost(){
-                        Resource = carbon,
-                        Value = 800,
-                        ResearchLevel = energy.ResearchLevels.ElementAt(1)
-                    },
-                    new ResearchCost(){
-                        Resource = fule,
-                        Value = 800,
-                        ResearchLevel = energy.ResearchLevels.ElementAt(1)
-                    },
-                    new ResearchCost(){
-                        Resource = metal,
-                        Value = 800,
-                        ResearchLevel = energy.ResearchLevels.ElementAt(1)
-                    }
-                };
+            return energy;
+        }
 
-                energy.ResearchLevels.ElementAt(2).ResearchCosts = new List<ResearchCost>()
-                {
-                    new ResearchCost(){
-                        Resource = carbon,
-                        Value = 2400,
-                        ResearchLevel = energy.ResearchLevels.ElementAt(2)
-                    },
-                    new ResearchCost(){
-                        Resource = fule,
-                        Value = 2400,
-                        ResearchLevel = energy.ResearchLevels.ElementAt(2)
-                    },
-                    new ResearchCost(){
-                        Resource = metal,
-                        Value = 2400,
-                        ResearchLevel = energy.ResearchLevels.ElementAt(2)
-                    }
-                };
 
-                energy.ResearchLevels.ElementAt(3).ResearchCosts = new List<ResearchCost>()
-                {
-                    new ResearchCost(){
-                        Resource = carbon,
-                        Value = 4200,
-                        ResearchLevel = energy.ResearchLevels.ElementAt(3)
-                    },
-                    new ResearchCost(){
-                        Resource = fule,
-                        Value = 4200,
-                        ResearchLevel = energy.ResearchLevels.ElementAt(3)
-                    },
-                    new ResearchCost(){
-                        Resource = metal,
-                        Value = 4200,
-                        ResearchLevel = energy.ResearchLevels.ElementAt(3)
-                    }
-                };
+        private static Research CreateCombustionEngineResearch()
+        {
 
-                researchRepositorie.Create(
-                    energy
-                    );
+            var combustionEngine = new Research()
+            {
+                Name = "Basic type of ship engine",
+                Description = "Converts fule into enegry which is used to accelerate ships"
+            };
 
-                var combustionEngine = new Research()
-                {
-                    Name = "Basic type of ship engine",
-                    Description = "Converts fule into enegry which is used to accelerate ships"
-                };
-
-                combustionEngine.ResearchLevels = new List<ResearchLevel>()
+            combustionEngine.AddResearchLevels(
+                new List<ResearchLevel>()
                 {
                     new ResearchLevel(){
-                        Research = combustionEngine,
                         Level = 1,
                         Duration = 400,
                         ResearchLabLevel = 1
                     },
                     new ResearchLevel(){
-                        Research = combustionEngine,
                         Level = 2,
                         Duration = 800,
                         ResearchLabLevel = 2
                     },
                     new ResearchLevel(){
-                        Research = combustionEngine,
                         Level = 3,
                         Duration = 2500,
                         ResearchLabLevel = 2
                     },
                     new ResearchLevel(){
-                        Research = combustionEngine,
                         Level = 4,
                         Duration = 6200,
                         ResearchLabLevel = 4
                     }
-                };
+                }
+            );
 
-                combustionEngine.ResearchLevels.ElementAt(0).ResearchFactorModifiers = new List<ResearchFactorModifier>()
+            var resorceRepository = new Repository<Resource>();
+            var metal = resorceRepository.Get(new Dictionary<string, string>() { { "Name", "Metal" } }).First();
+            var carbon = resorceRepository.Get(new Dictionary<string, string>() { { "Name", "Carbon" } }).First();
+            var fule = resorceRepository.Get(new Dictionary<string, string>() { { "Name", "Fule" } }).First();
+
+
+            var factorRepository = new Repository<Factor>();
+            var shipBuildFactor = factorRepository.Get(new Dictionary<string, string>() { { "Name", "Ship build speed" } }).First();
+
+
+            combustionEngine.ResearchLevels.ElementAt(0).AddResearchLevelModifiers(
+                new List<ResearchFactorModifier>()
                 {
                     new ResearchFactorModifier(){
                         Factor = shipBuildFactor,
-                        ResearchLevel = combustionEngine.ResearchLevels.ElementAt(0),
                         Value = 20
                     }
-                };
+                }
+                );
 
-                combustionEngine.ResearchLevels.ElementAt(1).ResearchFactorModifiers = new List<ResearchFactorModifier>()
+            combustionEngine.ResearchLevels.ElementAt(1).AddResearchLevelModifiers(
+                new List<ResearchFactorModifier>()
                 {
                     new ResearchFactorModifier(){
                         Factor = shipBuildFactor,
-                        ResearchLevel = combustionEngine.ResearchLevels.ElementAt(1),
                         Value = 60,
                     }
-                };
+                }
+                );
 
-                combustionEngine.ResearchLevels.ElementAt(2).ResearchFactorModifiers = new List<ResearchFactorModifier>()
+            combustionEngine.ResearchLevels.ElementAt(2).AddResearchLevelModifiers(
+                new List<ResearchFactorModifier>()
                 {
                     new ResearchFactorModifier(){
                         Factor = shipBuildFactor,
-                        ResearchLevel = combustionEngine.ResearchLevels.ElementAt(2),
                         Value = 120
                     }
-                };
+                }
+                );
 
-                combustionEngine.ResearchLevels.ElementAt(3).ResearchFactorModifiers = new List<ResearchFactorModifier>()
+            combustionEngine.ResearchLevels.ElementAt(3).AddResearchLevelModifiers(
+                new List<ResearchFactorModifier>()
                 {
                     new ResearchFactorModifier(){
                         Factor = shipBuildFactor,
                         ResearchLevel = combustionEngine.ResearchLevels.ElementAt(3),
                         Value = 190
                     }
-                };
+                }
+                );
 
-                combustionEngine.ResearchLevels.ElementAt(0).ResearchCosts = new List<ResearchCost>()
+            combustionEngine.ResearchLevels.ElementAt(0).AddResearchLevelsCosts(
+                new List<ResearchCost>()
                 {
                     new ResearchCost(){
                         Resource = carbon,
@@ -280,9 +292,11 @@ namespace Life.Factory
                         Value = 800,
                         ResearchLevel = combustionEngine.ResearchLevels.ElementAt(0)
                     }
-                };
+                }
+                );
 
-                combustionEngine.ResearchLevels.ElementAt(1).ResearchCosts = new List<ResearchCost>()
+            combustionEngine.ResearchLevels.ElementAt(1).AddResearchLevelsCosts(
+                new List<ResearchCost>()
                 {
                     new ResearchCost(){
                         Resource = carbon,
@@ -294,9 +308,11 @@ namespace Life.Factory
                         Value = 2300,
                         ResearchLevel = combustionEngine.ResearchLevels.ElementAt(1)
                     }
-                };
+                }
+                );
 
-                combustionEngine.ResearchLevels.ElementAt(2).ResearchCosts = new List<ResearchCost>()
+            combustionEngine.ResearchLevels.ElementAt(2).AddResearchLevelsCosts(
+                new List<ResearchCost>()
                 {
                     new ResearchCost(){
                         Resource = carbon,
@@ -308,9 +324,11 @@ namespace Life.Factory
                         Value = 4100,
                         ResearchLevel = combustionEngine.ResearchLevels.ElementAt(2)
                     }
-                };
+                }
+                );
 
-                combustionEngine.ResearchLevels.ElementAt(3).ResearchCosts = new List<ResearchCost>()
+            combustionEngine.ResearchLevels.ElementAt(3).AddResearchLevelsCosts(
+                new List<ResearchCost>()
                 {
                     new ResearchCost(){
                         Resource = carbon,
@@ -322,19 +340,22 @@ namespace Life.Factory
                         Value = 6500,
                         ResearchLevel = combustionEngine.ResearchLevels.ElementAt(3)
                     }
-                };
+                }
+                );
 
-                researchRepositorie.Create(
-                    combustionEngine
-                    );
+            return combustionEngine;
+        }
 
-                var lasers = new Research()
-                {
-                    Name = "Laser technology",
-                    Description = "Used to power basic weapons"
-                };
+        private static Research CreateLaserResearch(Research energy)
+        {
+            var lasers = new Research()
+            {
+                Name = "Laser technology",
+                Description = "Used to power basic weapons"
+            };
 
-                lasers.ResearchLevels = new List<ResearchLevel>()
+            lasers.AddResearchLevels(
+                new List<ResearchLevel>()
                 {
                     new ResearchLevel(){
                         Research = lasers,
@@ -360,11 +381,19 @@ namespace Life.Factory
                         Duration = 9000,
                         ResearchLabLevel = 6
                     }
-                };
+                }
+                );
 
-                lasers.ResearchLevels.ElementAt(0).ResearchRequirment = energy.ResearchLevels.ElementAt(1);
+            var resorceRepository = new Repository<Resource>();
+            var metal = resorceRepository.Get(new Dictionary<string, string>() { { "Name", "Metal" } }).First();
+            var carbon = resorceRepository.Get(new Dictionary<string, string>() { { "Name", "Carbon" } }).First();
+            var fule = resorceRepository.Get(new Dictionary<string, string>() { { "Name", "Fule" } }).First();
 
-                lasers.ResearchLevels.ElementAt(0).ResearchCosts = new List<ResearchCost>()
+
+            lasers.ResearchLevels.ElementAt(0).ResearchRequirment = energy.ResearchLevels.ElementAt(1);
+
+            lasers.ResearchLevels.ElementAt(0).AddResearchLevelsCosts(
+                new List<ResearchCost>()
                 {
                     new ResearchCost(){
                         Resource = carbon,
@@ -376,9 +405,10 @@ namespace Life.Factory
                         Value = 400,
                         ResearchLevel = lasers.ResearchLevels.ElementAt(0)
                     }
-                };
+                });
 
-                lasers.ResearchLevels.ElementAt(3).ResearchCosts = new List<ResearchCost>()
+            lasers.ResearchLevels.ElementAt(3).AddResearchLevelsCosts(
+                new List<ResearchCost>()
                 {
                     new ResearchCost(){
                         Resource = carbon,
@@ -390,9 +420,10 @@ namespace Life.Factory
                         Value = 2400,
                         ResearchLevel = lasers.ResearchLevels.ElementAt(3)
                     }
-                };
+                });
 
-                lasers.ResearchLevels.ElementAt(1).ResearchCosts = new List<ResearchCost>()
+            lasers.ResearchLevels.ElementAt(1).AddResearchLevelsCosts(
+                new List<ResearchCost>()
                 {
                     new ResearchCost(){
                         Resource = carbon,
@@ -404,9 +435,10 @@ namespace Life.Factory
                         Value = 1100,
                         ResearchLevel = lasers.ResearchLevels.ElementAt(1)
                     }
-                };
+                });
 
-                lasers.ResearchLevels.ElementAt(2).ResearchCosts = new List<ResearchCost>()
+            lasers.ResearchLevels.ElementAt(2).AddResearchLevelsCosts(
+                new List<ResearchCost>()
                 {
                     new ResearchCost(){
                         Resource = carbon,
@@ -418,15 +450,9 @@ namespace Life.Factory
                         Value = 1900,
                         ResearchLevel = lasers.ResearchLevels.ElementAt(2)
                     }
-                };
+                });
 
-                researchRepositorie.Create(
-                    lasers
-                    );
-
-            }
-
+            return lasers;
         }
-
     }
 }

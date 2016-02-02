@@ -37,3 +37,6 @@ C:\Users\Rep\documents\VS\Life\Life\bin\Debug\Castle.Windsor.dll
 C:\Users\Rep\documents\VS\Life\Life\bin\Debug\Castle.Core.xml
 C:\Users\Rep\documents\VS\Life\Life\bin\Debug\Castle.Windsor.xml
 C:\Users\Rep\documents\VS\Life\Life\bin\Debug\Mappings\Resource\Resource.hbm.xml
+C:\Users\Rep\documents\VS\Life\Life\bin\Debug\NSubstitute.dll
+C:\Users\Rep\documents\VS\Life\Life\bin\Debug\NSubstitute.xml
+C:\Users\Rep\documents\VS\Life\Life\obj\Debug\Life.Authorisation.resources

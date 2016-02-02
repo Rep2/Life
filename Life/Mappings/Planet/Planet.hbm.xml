@@ -18,8 +18,13 @@
     </component>
 
     <component name="CurrentlyBuilding" class="CurrentlyBuilding">
-      <property name="Start"/>
+      <property name="BuildingStart"/>
       <many-to-one name="BuildingLevel" column="BuildingLevelId" class="BuildingLevel"/>
+    </component>
+
+    <component name="CurrentlyResearching" class="CurrentlyResearching">
+      <property name="ResearchStart"/>
+      <many-to-one name="ResearchLevel" column="ResearchLevelId" class="ResearchLevel"/>
     </component>
 
     <many-to-one name="User" column="UserID" class="User"/>

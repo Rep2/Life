@@ -23,8 +23,7 @@ namespace Life.Factory
                 Password = "test"
             };
 
-            userRepositorie.Create(Register(userViewModel));
-
+            new AuthorisationRepository().Register(userViewModel);
         }
 
         public static User MockUser(){
@@ -34,28 +33,11 @@ namespace Life.Factory
                 Password = "sdasdsdasdads"
             };
 
-            return Register(userViewModel);
+            return new AuthorisationRepository().Register(userViewModel);
         }
 
-        public static User Register(UserViewModel userViewModel){
-
-            var salt = Hash.GenerateSalt();
-
-            var user = new User()
-            {
-                Email = userViewModel.Email,
-                PasswordHash = Hash.GenerateHash(userViewModel.Password, salt),
-                PasswordSalt = salt,
-                ResourcesUpdatedAt = DateTime.Now
-            };
-
-            user = CreateUserFactor(user);
-            user = CreateUserResource(user);
-
-            return user;
-        }
-
-        private static User CreateUserResource(User user){
+        
+        public static User CreateUserResource(User user){
 
             user.UserResources = new List<UserResource>();
 
@@ -76,7 +58,7 @@ namespace Life.Factory
 
         }
 
-        private static User CreateUserFactor(User user)
+        public static User CreateUserFactor(User user)
         {
 
             user.UserFactors = new List<UserFactor>();

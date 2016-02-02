@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Life.ViewModels
 {
-    class UserViewModel
+    public class UserViewModel
     {
         public string Email { get; set; }
 

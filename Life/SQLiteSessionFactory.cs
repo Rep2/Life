@@ -12,13 +12,13 @@ using System.Data.SQLite;
 using System.IO;
 using NHibernate.Tool.hbm2ddl;
 using NHibernate.Cfg;
-
+using Life.Factory;
 
 namespace Life
 {
     public static class SQLiteSessionFactory
     {
-        public static ISessionFactory CreateSessionFactory()
+        public static ISessionFactory CreateSessionFactory(bool resetDB)
         {
             Configuration c = new Configuration();
             c.Configure();
@@ -26,8 +26,11 @@ namespace Life
             // Adds assembly to config
             c.AddAssembly(Assembly.GetCallingAssembly());
 
-            // Uncomment to redo db. Exports schema and creates table
-            new SchemaExport(c).Execute(true, true, false);
+            if (resetDB)
+            {
+                new SchemaExport(c).Execute(true, true, false);
+
+            }
 
             return c.BuildSessionFactory();
         }

@@ -37,10 +37,12 @@ namespace Life.Factory
                 Location = RandomLocation(),
                 Size = random.Next(150, 300),
                 Temperature = random.Next(-80, 200),
-                CurrentlyBuilding = null
+                CurrentlyBuilding = null,
+                CurrentlyResearching = null,
+                User = null
             };
 
-            planet.BuiltBuildings = new List<BuiltBuilding>();
+          //  planet.BuiltBuildings = new List<BuiltBuilding>();
 
             return planet;
         }

@@ -9,6 +9,7 @@ using NHibernate;
 using Castle.Windsor;
 using Castle.MicroKernel.Registration;
 using Life.Factory;
+using Life.Controllers;
 
 namespace Life
 {
@@ -23,20 +24,20 @@ namespace Life
         [STAThread]
         static void Main()
         {
-            SetSessionFactory();
-
-            CreateData();
+            // Set true to reset db
+            SetSessionFactory(false);
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new Authorisation(new AuthorisationController()));
         }
 
         /// <summary>
         ///  Inits session factory and container
         /// </summary>
-        public static void SetSessionFactory(){
-            var sessionFactory = SQLiteSessionFactory.CreateSessionFactory();
+        public static void SetSessionFactory(bool resetDB){
+           
+            var sessionFactory = SQLiteSessionFactory.CreateSessionFactory(resetDB);
 
             if (!container.Kernel.HasComponent(typeof(ISessionFactory)))
             {
@@ -44,6 +45,11 @@ namespace Life
                     Component.For(typeof(ISessionFactory))
                     .Instance(sessionFactory)
                     .IsDefault());
+            }
+
+            if (resetDB)
+            {
+                CreateData();
             }
         }
 
@@ -60,9 +66,9 @@ namespace Life
             ResearchFactory.Init();
 
             BuildingFactory.Init();
-            BuildingLevelFactory.Init();
 
             UserFactory.Init();
         }
+       
     }
 }

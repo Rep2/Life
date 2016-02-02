@@ -60,6 +60,10 @@
     <Reference Include="NHibernate">
       <HintPath>..\packages\NHibernate.4.0.4.4000\lib\net40\NHibernate.dll</HintPath>
     </Reference>
+    <Reference Include="NSubstitute, Version=1.9.2.0, Culture=neutral, PublicKeyToken=92dd2e9066daa5ca, processorArchitecture=MSIL">
+      <HintPath>..\packages\NSubstitute.1.9.2.0\lib\net45\NSubstitute.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -98,18 +102,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\AuthorisationController.cs" />
     <Compile Include="Factory\BuildingFactory.cs" />
-    <Compile Include="Factory\BuildingLevelFactory.cs" />
     <Compile Include="Factory\FactorFactory.cs" />
     <Compile Include="Factory\PlanetFactory.cs" />
     <Compile Include="Factory\ResearchFactory.cs" />
     <Compile Include="Factory\ResourceFactory.cs" />
     <Compile Include="Factory\UserFactory.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="Authorisation.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Authorisation.Designer.cs">
+      <DependentUpon>Authorisation.cs</DependentUpon>
     </Compile>
     <Compile Include="Hash.cs" />
     <Compile Include="Models\Building\Building.cs" />
@@ -118,6 +122,7 @@
     <Compile Include="Models\Factor\FactorModifier.cs" />
     <Compile Include="Models\Planet\BuiltBuilding.cs" />
     <Compile Include="Models\Planet\Planet.cs" />
+    <Compile Include="Models\Planet\ResearchedResearch.cs" />
     <Compile Include="Models\Research\Research.cs" />
     <Compile Include="Models\Research\ResearchLevel.cs" />
     <Compile Include="Models\User\UserFactor.cs" />
@@ -128,11 +133,17 @@
     <Compile Include="Models\User\UserResource.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\AuthorisationRepository.cs" />
     <Compile Include="Repositories\Repository.cs" />
     <Compile Include="SQLiteSessionFactory.cs" />
     <Compile Include="Test\DB\DBTest.cs" />
-    <Compile Include="Test\DB\DBUserTest.cs" />
+    <Compile Include="Test\Models\PlanetTest.cs" />
+    <Compile Include="Test\Models\ResearchTest.cs" />
+    <Compile Include="Test\Models\BuildingsTest.cs" />
     <Compile Include="ViewModels\UserViewModel.cs" />
+    <EmbeddedResource Include="Authorisation.resx">
+      <DependentUpon>Authorisation.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -158,7 +169,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="hibernate.cfg.xml" />
-    <EmbeddedResource Include="Mappings\Research\ResearchLevel.hbm.xml" />
+    <EmbeddedResource Include="Mappings\Planet\ResearchedResearch.hbm.xml" />
+    <EmbeddedResource Include="Mappings\Research\ResearchLevel.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Mappings\Research\Research.hbm.xml" />
     <EmbeddedResource Include="Mappings\Planet\BuiltBuilding.hbm.xml" />
     <EmbeddedResource Include="Mappings\Planet\Planet.hbm.xml" />
@@ -166,7 +180,9 @@
     <EmbeddedResource Include="Mappings\Factor\Factor.hbm.xml" />
     <EmbeddedResource Include="Mappings\User\UserFactor.hbm.xml" />
     <EmbeddedResource Include="Mappings\Resource\ResourceCost.hbm.xml" />
-    <EmbeddedResource Include="Mappings\Building\BuildingLevel.hbm.xml" />
+    <EmbeddedResource Include="Mappings\Building\BuildingLevel.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Mappings\Building\Building.hbm.xml" />
     <EmbeddedResource Include="Mappings\User\UserResource.hbm.xml">
       <SubType>Designer</SubType>
