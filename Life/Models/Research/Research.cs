@@ -17,6 +17,8 @@ namespace Life.Models
 
         public IList<ResearchLevel> ResearchLevels { get; set; }
 
+    }
+}
         /// <summary>
         /// Adds research levels to research automaticaly creating double link
         /// </summary>

@@ -24,7 +24,7 @@ namespace Life.Factory
                        {
                            Name = "Metal",
                            Description = "Metal income per second",
-                           InitialValue = 20.0
+                           InitialValue = 2.0
                        }
                     );
 
@@ -33,7 +33,7 @@ namespace Life.Factory
                        {
                            Name = "Carbon",
                            Description = "Carbon income per second",
-                           InitialValue = 10.0
+                           InitialValue = 1.0
                        }
                     );
 
@@ -51,7 +51,7 @@ namespace Life.Factory
                        {
                            Name = "Build speed",
                            Description = "Speed of building build",
-                           InitialValue = 30.0
+                           InitialValue = 3.0
                        }
                     );
 

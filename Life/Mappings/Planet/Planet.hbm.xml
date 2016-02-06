@@ -27,10 +27,10 @@
       <many-to-one name="ResearchLevel" column="ResearchLevelId" class="ResearchLevel"/>
     </component>
 
-    <many-to-one name="User" column="UserID" class="User"/>
+    <many-to-one name="User" column="UserId" class="User"/>
 
     <bag name="BuiltBuildings"
-       lazy="true"
+       lazy="false"
        inverse="true"
        batch-size="25"
        cascade="all-delete-orphan">

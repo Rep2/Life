@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Life.Factory.UserFactory">
+    <Position X="0.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAAAAAAAAAAAAAIAAAAAAAABAAAACCIAAAAA=</HashCode>
+      <FileName>Factory\UserFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Life.Factory.BuildingFactory">
+    <Position X="4" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAAAAAABCAAEAQAAAAACAAAAAACAAAAAAA=</HashCode>
+      <FileName>Factory\BuildingFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Life.Factory.FactorFactory">
+    <Position X="2.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAA=</HashCode>
+      <FileName>Factory\FactorFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Life.Factory.PlanetFactory">
+    <Position X="2.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAQCAgAAAAA=</HashCode>
+      <FileName>Factory\PlanetFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Life.Factory.ResearchFactory">
+    <Position X="6.25" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAQgAAAAAAAAAAAACCAAAAAAA=</HashCode>
+      <FileName>Factory\ResearchFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Life.Factory.ResourceFactory">
+    <Position X="0.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAA=</HashCode>
+      <FileName>Factory\ResourceFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Life.Repositories.AuthorisationRepository">
+    <Position X="1.25" Y="4.5" Width="1.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAAAAAAAAAAAAAAAABAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>Repositories\AuthorisationRepository.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Life.Repositories.Repository&lt;T&gt;">
+    <Position X="0.75" Y="4.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAgAABAAAAAAAAAAAEAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Repositories\Repository.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Life.Authorisation">
+    <Position X="3.75" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAgAAAACAAABEAAASAAABCAAAoAAAAEEAAAAAAAAA=</HashCode>
+      <FileName>Authorisation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Life.Controllers.AuthorisationController">
+    <Position X="6" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Controllers\AuthorisationController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

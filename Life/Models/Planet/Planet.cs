@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Life.Repositories;
 
 namespace Life.Models
 {
@@ -90,11 +91,12 @@ namespace Life.Models
                 var buildingLevel = CurrentlyBuilding.BuildingLevel;
 
                 if (CurrentlyBuilding.BuildingStart.Add(
-                    new TimeSpan(0, 0, (int)buildingLevel.BuildDuration))
+                    (new TimeSpan(0, 0, (int)buildingLevel.BuildDuration + 1)))
                     < DateTime.Now)
                 {
                     AddBuilding(buildingLevel);
                     CurrentlyBuilding = null;
+
                 }
             }
         }

@@ -49,6 +49,7 @@ namespace Life.Repositories
 
             newUser = UserFactory.CreateUserFactor(newUser);
             newUser = UserFactory.CreateUserResource(newUser);
+            newUser = UserFactory.AddPlanet(newUser);
 
             return newUser;
         }

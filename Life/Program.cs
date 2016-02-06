@@ -18,6 +18,8 @@ namespace Life
 
         public static WindsorContainer container = new WindsorContainer();
 
+        public static Authorisation form;
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -29,7 +31,13 @@ namespace Life
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Authorisation(new AuthorisationController()));
+
+            
+            form = new Authorisation();
+            var controller = new AuthorisationController(form);
+            form.controller = controller;
+
+            Application.Run(form);
         }
 
         /// <summary>

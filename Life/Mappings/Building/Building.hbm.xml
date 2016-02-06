@@ -12,7 +12,7 @@
     <property name= "Description" not-null="true"/>
 
     <bag name="BuildingLevels"
-       lazy="true"
+       lazy="false"
        inverse="true"
        batch-size="25"
        cascade="all-delete-orphan">

@@ -52,6 +52,41 @@ namespace Life.Models
             return true;
         }
 
+
+        /// <summary>
+        /// Removes reseource for building
+        /// </summary>
+        /// <param name="buildingLevel"></param>
+        public void RemoveResourceForBuild(BuildingLevel buildingLevel)
+        {
+            var costs = buildingLevel.BuildingCosts;
+
+            foreach (BuildingCost cost in costs)
+            {
+                //Check if user has enaugh resources
+                var userResource = UserResources.Where(b => b.Resource.Id == cost.Resource.Id);
+
+                userResource.First().Amount -= cost.Value;
+            }
+        }
+
+        /// <summary>
+        /// Adds resource for building
+        /// </summary>
+        /// <param name="buildingLevel"></param>
+        public void AddResourceForBuild(BuildingLevel buildingLevel)
+        {
+            var costs = buildingLevel.BuildingCosts;
+
+            foreach (BuildingCost cost in costs)
+            {
+                //Check if user has enaugh resources
+                var userResource = UserResources.Where(b => b.Resource.Id == cost.Resource.Id);
+
+                userResource.First().Amount += cost.Value;
+            }
+        }
+
         /// <summary>
         /// Checks if user has enaugh resources to start research
         /// </summary>
@@ -108,6 +143,23 @@ namespace Life.Models
             }
 
             return true;
+        }
+
+
+        /// <summary>
+        /// Updates users resources
+        /// </summary>
+        public void UpdateResources()
+        {
+            var timeNow = DateTime.Now;
+            var period = timeNow - ResourcesUpdatedAt;
+
+            foreach (UserResource resource in UserResources)
+            {
+                resource.Amount += period.Seconds * UserFactors.Where(b => b.Factor.Name == resource.Resource.Name).First().Value;
+            }
+
+            ResourcesUpdatedAt = timeNow;
         }
 
     }

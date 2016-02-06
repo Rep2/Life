@@ -102,7 +102,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BuildingDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BuildingDetails.Designer.cs">
+      <DependentUpon>BuildingDetails.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\AuthorisationController.cs" />
+    <Compile Include="Controllers\BuildingDetailController.cs" />
     <Compile Include="Factory\BuildingFactory.cs" />
     <Compile Include="Factory\FactorFactory.cs" />
     <Compile Include="Factory\PlanetFactory.cs" />
@@ -116,6 +123,12 @@
       <DependentUpon>Authorisation.cs</DependentUpon>
     </Compile>
     <Compile Include="Hash.cs" />
+    <Compile Include="MainScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainScreen.Designer.cs">
+      <DependentUpon>MainScreen.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Building\Building.cs" />
     <Compile Include="Models\Building\BuildingLevel.cs" />
     <Compile Include="Models\Factor\Factor.cs" />
@@ -140,9 +153,19 @@
     <Compile Include="Test\Models\PlanetTest.cs" />
     <Compile Include="Test\Models\ResearchTest.cs" />
     <Compile Include="Test\Models\BuildingsTest.cs" />
+    <Compile Include="ViewModels\BuildingFactorModifierViewModel.cs" />
+    <Compile Include="ViewModels\BuildingLevelViewModel.cs" />
+    <Compile Include="ViewModels\PlanetViewModel.cs" />
+    <Compile Include="ViewModels\ResourceViewModel.cs" />
     <Compile Include="ViewModels\UserViewModel.cs" />
     <EmbeddedResource Include="Authorisation.resx">
       <DependentUpon>Authorisation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BuildingDetails.resx">
+      <DependentUpon>BuildingDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainScreen.resx">
+      <DependentUpon>MainScreen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -153,7 +176,14 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\Life.Models.BuildingLevel.datasource" />
+    <None Include="Properties\DataSources\Life.ViewModels.BuildingFactorModifierViewModel.datasource" />
+    <None Include="Properties\DataSources\Life.ViewModels.BuildingLevelViewModel.datasource" />
+    <None Include="Properties\DataSources\Life.ViewModels.PlanetViewModel.datasource" />
+    <None Include="Properties\DataSources\Life.ViewModels.ResourceViewModel.datasource" />
+    <None Include="Properties\DataSources\Life.ViewModels.UserViewModel.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

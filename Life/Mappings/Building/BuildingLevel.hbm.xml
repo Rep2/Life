@@ -14,7 +14,7 @@
     <many-to-one name="Building" column="BuildingId" class="Building"/>
 
     <bag name="BuildingCosts"
-       lazy="true"
+       lazy="false"
        inverse="true"
        batch-size="25"
        cascade="all-delete-orphan">
@@ -24,7 +24,7 @@
     </bag>
 
     <bag name="BuildingFactorModifiers"
-       lazy="true"
+       lazy="false"
        inverse="true"
        batch-size="25"
        cascade="all-delete-orphan">

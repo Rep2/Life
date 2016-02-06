@@ -107,7 +107,7 @@ namespace Life.Factory
                     {
                         new BuildingFactorModifier(){
                             Factor = metalFactor,
-                            Value = 30
+                            Value = 10
                         }
                     }
             );
@@ -131,7 +131,7 @@ namespace Life.Factory
                     {
                         new BuildingFactorModifier(){
                             Factor = metalFactor,
-                            Value = 80
+                            Value = 30
                         }
                     }
             );
@@ -309,7 +309,7 @@ namespace Life.Factory
                     {
                         new BuildingFactorModifier(){
                             Factor = carbonFactor,
-                            Value = 20
+                            Value = 10
                         }
                     }
             );
@@ -657,6 +657,7 @@ namespace Life.Factory
                     }
             );
 
+            shipyard.AddBuildingLevels(buildingLevels);
 
             return shipyard;
         }
@@ -751,6 +752,8 @@ namespace Life.Factory
                         }
                     }
             );
+
+            researchLab.AddBuildingLevels(buildingLevels);
 
             return researchLab;
         }

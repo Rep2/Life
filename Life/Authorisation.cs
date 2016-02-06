@@ -15,12 +15,10 @@ namespace Life
     {
         private bool isRegister = false;
 
-        private AuthorisationController controller;
+        public AuthorisationController controller { get; set; }
 
-        public Authorisation(AuthorisationController controller)
+        public Authorisation()
         {
-            this.controller = controller;
-
             InitializeComponent();
         }
 

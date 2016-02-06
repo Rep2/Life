@@ -36,6 +36,14 @@ namespace Life.Factory
             return new AuthorisationRepository().Register(userViewModel);
         }
 
+        public static User CreateUserData(User user)
+        {
+            user = CreateUserResource(user);
+            user = CreateUserFactor(user);
+            user = AddPlanet(user);
+
+            return user;
+        }
         
         public static User CreateUserResource(User user){
 
@@ -79,6 +87,23 @@ namespace Life.Factory
             return user;
         }
 
-   
+        public static User AddPlanet(User user)
+        {
+            var repo = new Repository<Planet>();
+
+            var planet = repo.Get().Where(b => b.User == null).First();
+
+            if (user.Planets == null)
+            {
+                user.Planets = new List<Planet>();
+            }
+
+            planet.User = user;
+            user.Planets.Add(planet);
+      
+            return user;
+        }
+    
+
     }
 }
